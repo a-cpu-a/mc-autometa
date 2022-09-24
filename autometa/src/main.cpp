@@ -87,7 +87,7 @@ int main(void)
 
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(1024, 1024, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(1349, 900, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -104,13 +104,13 @@ int main(void)
 
 
     float quad[12] = {
-        -1.0 ,-1.0,
-        1.0 ,-1.0,
-        1.0, 1.0,
-
-        1.0 ,1.0,
         -1.0 ,1.0,
-        -1.0, -1.0
+        1.0 ,1.0,
+        1.0, -1.0,
+
+        1.0 ,-1.0,
+        -1.0 ,-1.0,
+        -1.0, 1.0
     };
 
     glEnable(GL_BLEND);
@@ -150,7 +150,7 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2 * SIZE, 2 * SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 3 * SIZE, 2 * SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
     glActiveTexture(GL_TEXTURE0);
 
@@ -208,12 +208,15 @@ int main(void)
             glBindTexture(GL_TEXTURE_2D, textureId);
 
             //glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, waterGen.xSize, waterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, waterGen.img.data() );
-            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, portalGen.xSize, portalGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, portalGen.img.data() );
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, waterGen.xSize, waterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, waterGen.img.data() );
             glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, 0, flowingWaterGen.xSize, flowingWaterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingWaterGen.img.data());
             glTexSubImage2D(GL_TEXTURE_2D, 0, 0, SIZE, lavaGen.xSize, lavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, lavaGen.img.data());
             //glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, SIZE, SIZE, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaTexture.GetData().data());
             //glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, flowingLavaGen.xSize, flowingLavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaGen.img.data());
-            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, fireGen.xSize, fireGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, fireGen.img.data());
+            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, flowingLavaGen.xSize, flowingLavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaGen.img.data());
+
+            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE*2, 0, portalGen.xSize, portalGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, portalGen.img.data());
+            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE * 2, SIZE, fireGen.xSize, fireGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, fireGen.img.data());
 
             glBindTexture(GL_TEXTURE_2D, 0);
 

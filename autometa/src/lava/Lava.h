@@ -29,8 +29,8 @@ struct LavaGenerator
 			img.resize(pxCount * 4);
 		}
 
-		const int32_t blurSizeX = (int32_t)sqrt(double(xSize/16));
-		const int32_t blurSizeY = (int32_t)sqrt(double(ySize/16));
+		const int32_t blurSizeX = (int32_t)std::roundf(sqrt(double(xSize/16)));
+		const int32_t blurSizeY = (int32_t)std::roundf(sqrt(double(ySize/16)));
 
 		const float totalWeightR = 1.0 / (float((blurSizeX * 2 + 1) * (blurSizeY * 2 + 1)) * 1.1f);
 

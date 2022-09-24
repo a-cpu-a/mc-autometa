@@ -33,7 +33,7 @@ struct FlowingWaterGenerator
 
 		}
 
-		const int32_t blurSizeY = (int32_t)sqrt(double(ySize / 16));
+		const int32_t blurSizeY = (int32_t)std::roundf(sqrt(double(ySize / 16)));
 		frame += blurSizeY;
 
 		const float totalWeightR = 1.0 / (float(blurSizeY * 2 + 1) * 1.0667f);

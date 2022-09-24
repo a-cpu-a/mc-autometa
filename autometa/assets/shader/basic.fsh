@@ -9,5 +9,5 @@ in vec2 pos;
 void main()
 {
 	vec2 uv = (pos.xy+1.0) / 2.0;
-	color = texture(textureId,uv);
+	color = texture(textureId,vec2(uv.x,1.0-uv.y));
 }
