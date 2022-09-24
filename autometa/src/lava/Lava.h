@@ -40,8 +40,10 @@ struct LavaGenerator
 		{
 			for (size_t y = 0; y < ySize; y++)
 			{
-				int32_t offsetX = (int32_t)(1.2f * sin((double)x * 22.5f * 0.0174532925f));
-				int32_t offsetY = (int32_t)(1.2f * sin((double)y * 22.5f * 0.0174532925f));
+
+
+				const int32_t offsetX = (int32_t)(1.2f * sin((float(x) / float(xSize)) * 6.28318531f));
+				const int32_t offsetY = (int32_t)(1.2f * sin((float(y) / float(ySize)) * 6.28318531f));
 
 				float float_0_ = 0.0f;
 				int32_t bx = x - blurSizeX + offsetX;

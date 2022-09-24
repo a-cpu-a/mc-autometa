@@ -20,6 +20,8 @@
 #include "lava/FlowingLava.h"
 #include "water/Water.h"
 #include "water/FlowingWater.h"
+#include "misc/Portal.h"
+#include "misc/Fire.h"
 
 std::string GetStringFromFile(const std::string& filepath)
 {
@@ -65,6 +67,13 @@ static GLuint compileShader(GLuint type, const std::string& src)
 }
 
 
+
+LavaGenerator lavaGen;
+FlowingLavaGenerator flowingLavaGen;
+WaterGenerator waterGen;
+FlowingWaterGenerator flowingWaterGen;
+PortalGenerator portalGen;
+FireGenerator fireGen;
 
 
 int main(void)
@@ -157,15 +166,11 @@ int main(void)
     //int updates = 0;
 
     double lastTime = glfwGetTime();
-
+    /*
     Water waterTexture;
     FlowingWater flowingWaterTexture;
     Lava lavaTexture;
-    FlowingLava flowingLavaTexture;
-    LavaGenerator lavaGen;
-    FlowingLavaGenerator flowingLavaGen;
-    WaterGenerator waterGen;
-    FlowingWaterGenerator flowingWaterGen;
+    FlowingLava flowingLavaTexture;*/
 
     glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -193,6 +198,8 @@ int main(void)
             flowingLavaGen.onTick();
             waterGen.onTick();
             flowingWaterGen.onTick();
+            portalGen.onTick();
+            fireGen.onTick();
             
 
 
@@ -200,11 +207,13 @@ int main(void)
 
             glBindTexture(GL_TEXTURE_2D, textureId);
 
-            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, waterGen.xSize, waterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, waterGen.img.data() );
+            //glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, waterGen.xSize, waterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, waterGen.img.data() );
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, portalGen.xSize, portalGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, portalGen.img.data() );
             glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, 0, flowingWaterGen.xSize, flowingWaterGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingWaterGen.img.data());
             glTexSubImage2D(GL_TEXTURE_2D, 0, 0, SIZE, lavaGen.xSize, lavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, lavaGen.img.data());
             //glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, SIZE, SIZE, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaTexture.GetData().data());
-            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, flowingLavaGen.xSize, flowingLavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaGen.img.data());
+            //glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, flowingLavaGen.xSize, flowingLavaGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, flowingLavaGen.img.data());
+            glTexSubImage2D(GL_TEXTURE_2D, 0, SIZE, SIZE, fireGen.xSize, fireGen.ySize, GL_RGBA, GL_UNSIGNED_BYTE, fireGen.img.data());
 
             glBindTexture(GL_TEXTURE_2D, 0);
 

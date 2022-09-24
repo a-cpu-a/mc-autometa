@@ -186,6 +186,8 @@
     <ClInclude Include="src\Lava.h" />
     <ClInclude Include="src\lava\FlowingLava.h" />
     <ClInclude Include="src\lava\Lava.h" />
+    <ClInclude Include="src\misc\Fire.h" />
+    <ClInclude Include="src\misc\Portal.h" />
     <ClInclude Include="src\Oil.h" />
     <ClInclude Include="src\UnLava.h" />
     <ClInclude Include="src\Water.h" />

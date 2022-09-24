@@ -94,7 +94,7 @@ struct FlowingLavaGenerator
 
 		for (size_t i = 0; i < pxCount*4; i+=4)
 		{
-			const float val = std::max(std::min(soupHeatMap[((i / 4)+frame / 3 * xSize)% pxCount] * 2.0f,1.0f),0.0f);
+			const float val = std::max(std::min(soupHeatMap[((i / 4)-frame / 3 * xSize)% pxCount] * 2.0f,1.0f),0.0f);
 
 			if (false)
 			{
